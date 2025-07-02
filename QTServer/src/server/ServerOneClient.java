@@ -6,7 +6,6 @@ import database.DatabaseConnectionException;
 import database.EmptySetException;
 import mining.ClusteringRadiusException;
 import mining.QTMiner;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,6 +13,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.SQLException;
 
+/**
+ * Classe che gestisce un singolo client connesso al server.
+ * Estende la classe Thread e permette la gestione concorrente di più client.
+ */
 public class ServerOneClient extends Thread{
 
     private final Socket socket;
@@ -22,6 +25,12 @@ public class ServerOneClient extends Thread{
     private QTMiner kmeans;
     private Data data;
 
+    /**
+     * Costruttore di classe. Inizializza gli attributi socket, in e out.
+     * Avvia il thread.
+     * @param s socket del client
+     * @throws IOException IOException se si verifica un errore di I/O nella creazione degli stream
+     */
     ServerOneClient(Socket s) throws IOException {
         this.socket = s;
         this.out = new ObjectOutputStream(socket.getOutputStream());
@@ -29,6 +38,9 @@ public class ServerOneClient extends Thread{
         this.start();
     }
 
+    /**
+     * Riscrive il metodo run della superclasse Thread al fine di gestire le richieste del client.
+     */
     @Override
     public void run(){
         try{
@@ -63,6 +75,13 @@ public class ServerOneClient extends Thread{
         }
     }
 
+    /**
+     * Metodo che riceve dal client una tabella e un raggio per eseguire
+     * un clustering sul dataset. Il risultato viene restituito al client
+     * e salvato in un file specificato.
+     * @throws IOException se si verifica un errore di input/output
+     * @throws ClassNotFoundException se il formato degli oggetti ricevuti non è valido
+     */
     public void scopriCluster() throws IOException, ClassNotFoundException {
         String tableName = (String) in.readObject();
         double radius = (double) in.readObject();
@@ -91,6 +110,13 @@ public class ServerOneClient extends Thread{
         }
     }
 
+    /**
+     * Metodo che carica da file un clustering precedentemente salvato
+     * e restituisce il risultato al client.
+     * @throws FileNotFoundException se il file non viene trovato
+     * @throws ClassNotFoundException se il contenuto del file ha un formato sconosciuto
+     * @throws IOException se si verifica un errore di input/output
+     */
     public void leggiCluster() throws FileNotFoundException, ClassNotFoundException, IOException {
         String fileName = (String) in.readObject();
         String tableName = (String) in.readObject();

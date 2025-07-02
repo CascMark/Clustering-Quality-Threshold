@@ -1,90 +1,130 @@
 package mining;
+
 import data.Data;
 import data.EmptyDatasetException;
 import data.Tuple;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 
+/**
+ * Classe che modella un cluster, cioè un insieme di tuple raggruppate attorno a un centroide.
+ * Ogni cluster mantiene il proprio centroide e l'insieme degli ID delle tuple che vi appartengono.
+ */
 public class Cluster implements Iterable<Integer>, Comparable<Cluster>, Serializable {
 
 	private Tuple centroid;
 	private HashSet<Integer> clusteredData;
 
-	Cluster(Tuple centroid){
-		this.centroid=centroid;
-		this.clusteredData = new HashSet<Integer>();
+	/**
+	 * Costruttore che inizializza il cluster con un centroide.
+	 * @param centroid tupla che rappresenta il centroide iniziale del cluster
+	 */
+	Cluster(Tuple centroid) {
+		this.centroid = centroid;
+		this.clusteredData = new HashSet<>();
 	}
-		
-	Tuple getCentroid(){
+
+	/**
+	 * Restituisce il centroide del cluster.
+	 * @return centroide come oggetto Tuple
+	 */
+	Tuple getCentroid() {
 		return centroid;
 	}
-	
-	//return true if the tuple is changing cluster
-	boolean addData(int id){
+
+	/**
+	 * Aggiunge l'ID di una tupla al cluster.
+	 * @param id indice della tupla da aggiungere
+	 * @return true se l'inserimento è avvenuto con successo (la tupla non era già presente), false altrimenti
+	 */
+	boolean addData(int id) {
 		return clusteredData.add(id);
-		
 	}
-	
-	//verifica se una transazione � clusterizzata nell'array corrente
-	boolean contain(int id){
+
+	/**
+	 * Verifica se una tupla (tramite ID) è contenuta nel cluster.
+	 * @param id ID della tupla da cercare
+	 * @return {@code true} se la tupla è presente nel cluster, false altrimenti
+	 */
+	boolean contain(int id) {
 		return clusteredData.contains(id);
 	}
-	
 
-	//remove the tuplethat has changed the cluster
-	void removeTuple(int id){
+	/**
+	 * Rimuove una tupla dal cluster (tramite il suo ID).
+	 * @param id ID della tupla da rimuovere
+	 */
+	void removeTuple(int id) {
 		clusteredData.remove(id);
 	}
 
-	public int  getSize(){
+	/**
+	 * Restituisce il numero di tuple assegnate al cluster.
+	 * @return dimensione del cluster
+	 */
+	public int getSize() {
 		return clusteredData.size();
 	}
 
+	/**
+	 * Restituisce un iteratore sugli ID delle tuple contenute nel cluster.
+	 * @return iteratore sugli ID
+	 */
 	@Override
-	public Iterator<Integer> iterator(){
+	public Iterator<Integer> iterator() {
 		return clusteredData.iterator();
 	}
 
-	public String toString(){
-		String str="Centroid=(";
-		for(int i=0;i<centroid.getLength();i++)
-			str+=centroid.get(i);
-		str+=")";
-		return str;
-		
+	/**
+	 * Restituisce una stringa con la rappresentazione del centroide.
+	 * @return stringa rappresentante il centroide
+	 */
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder("Centroid=(");
+		for (int i = 0; i < centroid.getLength(); i++) {
+			str.append(centroid.get(i));
+		}
+		str.append(")");
+		return str.toString();
 	}
 
-	public String toString(Data data){
-		String str="Centroid=(";
-		for(int i=0;i<centroid.getLength();i++)
-			str+=centroid.get(i)+ " ";
-		str+=")\nExamples:\n";
+	/**
+	 * Restituisce una rappresentazione testuale del cluster che include:
+	 * il centroide, tutte le tuple assegnate al cluster e la distanza media da esse al centroide.
+	 * @param data oggetto Data contenente tutte le tuple
+	 * @return descrizione testuale del cluster
+	 */
+	public String toString(Data data) {
+		StringBuilder str = new StringBuilder("Centroid=(");
+		for (int i = 0; i < centroid.getLength(); i++) {
+			str.append(centroid.get(i)).append(" ");
+		}
+		str.append(")\nExamples:\n");
 		try {
 			for (Integer id : clusteredData) {
-				str += "[";
-				for (int j = 0; j < data.getNumberOfAttributes(); j++)
-					str += data.getAttributeValue(id, j) + " ";
-				str += "] dist=" + getCentroid().getDistance(data.getItemSet(id)) + "\n";
+				str.append("[");
+				for (int j = 0; j < data.getNumberOfAttributes(); j++) {
+					str.append(data.getAttributeValue(id, j)).append(" ");
+				}
+				str.append("] dist=").append(getCentroid().getDistance(data.getItemSet(id))).append("\n");
 			}
-			Integer[] array = clusteredData.toArray(new Integer[0]);
-			int[] intArray = new int[array.length];
-			for(int i = 0; i < array.length; i++) {
-				intArray[i] = array[i];
-			}
-			str += "\nAvgDistance=" + getCentroid().avgDistance(data, clusteredData);
-		}
-		catch(EmptyDatasetException ede){
+			str.append("\nAvgDistance=").append(getCentroid().avgDistance(data, clusteredData));
+		} catch (EmptyDatasetException ede) {
 			System.out.println("Empty dataset!");
 		}
-		return str;
+		return str.toString();
 	}
 
+	/**
+	 * Confronta due cluster in base alla dimensione (numero di tuple).
+	 * @param cluster cluster da confrontare
+	 * @return 1 se questo cluster è più grande, -1 se più piccolo, 0 se uguale
+	 */
 	@Override
-	public int compareTo(Cluster cluster){
-		if(this.clusteredData.size() > cluster.getSize()){ return 1;}
-		if(this.clusteredData.size() < cluster.getSize()){ return -1;}
-		return 0;
+	public int compareTo(Cluster cluster) {
+		return Integer.compare(this.clusteredData.size(), cluster.getSize());
 	}
-
 }

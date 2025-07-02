@@ -7,12 +7,25 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Classe concreta per modellare l'insieme di transazione
+ * o tuple o anche denominati esempi
+ */
 public class Data implements Iterable<Attribute>, Serializable {
 
 	private List<Example> data = new ArrayList<Example>();
-	public int numberOfExamples;
+	private int numberOfExamples;
 	public List<Attribute> attributeSet;
 
+	/**
+	 * Costruisce un oggetto {@code Data} popolando lo schema e i dati
+	 * dalla tabella del database specificata.
+	 *
+	 * @param nome_tabella nome della tabella nel database da cui estrarre i dati
+	 * @throws DatabaseConnectionException se la connessione al database fallisce
+	 * @throws EmptySetException se la tabella è vuota
+	 * @throws SQLException se si verifica un errore SQL
+	 */
 	public Data(String nome_tabella) throws DatabaseConnectionException, EmptySetException, SQLException {
 		DbAccess db = new DbAccess();
 		try {
@@ -70,18 +83,38 @@ public class Data implements Iterable<Attribute>, Serializable {
 		}
 	}
 
+	/**
+	 * Restituisce il numero di esempi
+	 * @return numero di esempi
+	 */
 	public int getNumberOfExamples() {
 		return numberOfExamples;
 	}
 
+	/**
+	 * Restituisce il numero di attributi
+	 * @return numero di attributi
+	 */
 	public int getNumberOfAttributes() {
 		return attributeSet.size();
 	}
 
+	/**
+	 * Restituisce lo schema degli attributi nel dataset
+	 * @return lista degli attributi
+	 */
 	public List<Attribute> getAttributeSchema() {
 		return attributeSet;
 	}
 
+	/**
+	 * Restituisce il valore di un certo attributo nella posizione
+	 * specificata
+	 * @param exampleIndex indice dell'esempio
+	 * @param attributeIndex indice dell'attributo
+	 * @return valore dell'attributo corrispondente agli indici
+	 * @throws EmptyDatasetException se il dataset è vuoto
+	 */
 	public Object getAttributeValue(int exampleIndex, int attributeIndex) throws EmptyDatasetException {
 		if (numberOfExamples == 0) {
 			throw new EmptyDatasetException();
@@ -89,10 +122,21 @@ public class Data implements Iterable<Attribute>, Serializable {
 		return data.get(exampleIndex).get(attributeIndex);
 	}
 
+	/**
+	 * Restituisce l'attributo nella posizione specificata dello schema
+	 * @param index indice dell'attributo
+	 * @return attributo corrispondente all'indice passato
+	 */
 	public Attribute getAttribute(int index) {
 		return attributeSet.get(index);
 	}
 
+	/**
+	 * crea una stringa in cui memorizza lo schema della
+	 * tabella (vedi attributeSet) e le transazioni memorizzate in data,
+	 * opportunamente enumerate. Restituisce tale stringa
+	 * @return stringa rappresentante il dataset
+	 */
 	@Override
 	public String toString() {
 		StringBuilder attributeSchema = new StringBuilder();
@@ -121,6 +165,14 @@ public class Data implements Iterable<Attribute>, Serializable {
 		return attributeSchema.toString();
 	}
 
+	/**
+	 * Costruisce un oggetto Tuple rappresentante l'itemset
+	 * corrispondente all'esempio in posizione index, associando
+	 * ad ogni attributo l'opportuno tipo di Item.
+	 *
+	 * @param index indice dell'esempio
+	 * @return tupla corrispondente all'esempio
+	 */
 	public Tuple getItemSet(int index) {
 		Tuple tuple = new Tuple(attributeSet.size());
 		Iterator<Attribute> attribute = attributeSet.iterator();
@@ -137,11 +189,22 @@ public class Data implements Iterable<Attribute>, Serializable {
 		return tuple;
 	}
 
+	/**
+	 * Restituisce un iteratore sugli attributi dello schema.
+	 *
+	 * @return iteratore sugli attributi
+	 */
 	@Override
 	public Iterator<Attribute> iterator() {
 		return this.attributeSet.iterator();
 	}
 
+	/**
+	 * Metodo di test che crea un oggetto Data da una tabella
+	 * fittizia e ne stampa il contenuto.
+	 *
+	 * @param args argomenti da linea di comando (non utilizzati)
+	 */
 	public static void main(String args[]) {
 		try {
 			Data trainingSet = new Data("nome_tabella");

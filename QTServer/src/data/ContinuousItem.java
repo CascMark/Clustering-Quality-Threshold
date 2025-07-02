@@ -2,12 +2,28 @@ package data;
 
 import java.io.Serializable;
 
+/**
+ * Classe concreta che estende la classe Item e modella
+ * una coppia Attributo continuo - valore numerico
+ */
 public class ContinuousItem extends Item implements Serializable {
 
+    /**
+     * Richiama il costruttore della superclasse
+     * @param attribute attributo coinvolto nell'item
+     * @param value valore assegnato all'attributo
+     */
     ContinuousItem(ContinuousAttribute attribute, Double value){
         super(attribute, value);
     }
 
+    /**
+     * Determina la distanza (in valore assoluto) tra il valore
+     * scalato memorizzato nello item corrente (this.getValue()) e quello
+     * scalato associato al parametro a.
+     * @param a valore scalato
+     * @return
+     */
     @Override
     public double distance(Object a){
         ContinuousItem other = (ContinuousItem) a;

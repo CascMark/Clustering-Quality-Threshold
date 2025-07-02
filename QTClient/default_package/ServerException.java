@@ -1,6 +1,6 @@
 package default_package;
 /**
- * Eccezione personalizzata lanciata in caso di errore lato server.
+ * Eccezione personalizzata lanciata in caso di errore del server.
  */
 public class ServerException extends Exception {
     /**
