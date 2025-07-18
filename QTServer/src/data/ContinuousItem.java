@@ -13,7 +13,7 @@ public class ContinuousItem extends Item implements Serializable {
      * @param attribute attributo coinvolto nell'item
      * @param value valore assegnato all'attributo
      */
-    ContinuousItem(ContinuousAttribute attribute, Double value){
+    public ContinuousItem(ContinuousAttribute attribute, Double value){
         super(attribute, value);
     }
 

@@ -13,7 +13,7 @@ public class DiscreteItem extends Item implements Serializable {
      * @param attribute attributo coinvolto nell'item
      * @param value valore assegnato all'attributo
      */
-    DiscreteItem(DiscreteAttribute attribute, String value){
+    public DiscreteItem(DiscreteAttribute attribute, String value){
         super(attribute, value);
     }
 

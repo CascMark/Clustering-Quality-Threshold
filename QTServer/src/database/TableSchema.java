@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ import java.util.List;
  * su nomi e tipi degli attributi.
  */
 public class TableSchema {
-	DbAccess db;
+	private DbAccess db;
 
 	/**
 	 * Classe interna che rappresenta una colonna della tabella.

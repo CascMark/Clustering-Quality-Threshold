@@ -16,7 +16,7 @@ public class Tuple implements Iterable<Item>, Serializable{
      * Costruisce  l'oggetto riferito da tuple
      * @param size numero di item che costituirà la tupla
      */
-    Tuple(int size){
+    public Tuple(int size){
         tuple = new Item[size];
     }
 

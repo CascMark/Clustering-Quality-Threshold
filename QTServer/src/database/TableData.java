@@ -3,14 +3,10 @@ package database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
 import database.TableSchema.Column;
 
 /**
@@ -20,7 +16,7 @@ import database.TableSchema.Column;
  */
 public class TableData {
 
-	DbAccess db;
+	private DbAccess db;
 
 	/**
 	 * Costruttore della classe.

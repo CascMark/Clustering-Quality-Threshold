@@ -1,9 +1,7 @@
 package mining;
-
 import data.Data;
 import data.EmptyDatasetException;
 import data.Tuple;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;

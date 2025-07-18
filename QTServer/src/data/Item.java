@@ -7,15 +7,15 @@ import java.io.Serializable;
  */
 public abstract class Item implements Serializable {
 
-    private Attribute attribute;
-    private Object value;
+    protected Attribute attribute;
+    protected Object value;
 
     /**
      * Inizializza i valori dei membri attributi
      * @param attribute attributo coinvolto nell'item
      * @param value valore assegnato all'attributo
      */
-    Item(Attribute attribute, Object value){
+    public Item(Attribute attribute, Object value){
         this.attribute = attribute;
         this.value = value;
     }

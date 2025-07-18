@@ -15,7 +15,7 @@ public abstract class Attribute implements Serializable {
      * @param name nome dell'attributo
      * @param index identificativo numerico dell'attributo
      */
-    Attribute(String name, int index){
+    public Attribute(String name, int index){
         this.name = name;
         this.index = index;
     }
@@ -28,7 +28,7 @@ public abstract class Attribute implements Serializable {
 
     /**
      * Restituisce l'identificativo numerico dell'oggetto Attributo
-     * @return
+     * @return index
      */
     protected int getIndex(){ return index; }
 

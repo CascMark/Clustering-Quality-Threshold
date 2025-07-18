@@ -9,7 +9,7 @@ import java.util.TreeSet;
  */
 public class DiscreteAttribute extends Attribute implements Iterable<String>, Serializable{
 
-    public TreeSet<String> values;
+    private TreeSet<String> values;
 
     /**
      * Invoca il costruttore della classe madre e
@@ -18,7 +18,7 @@ public class DiscreteAttribute extends Attribute implements Iterable<String>, Se
      * @param index dentificativo numerico dell'attributo
      * @param values  array di stringhe rappresentanti il dominio dell'attributo
      */
-    DiscreteAttribute(String name, int index, String values[]){
+    public DiscreteAttribute(String name, int index, String values[]){
         super(name, index);
         this.values = new TreeSet<String>();
         for(String value : values){

@@ -18,7 +18,7 @@ public class ContinuousAttribute extends Attribute implements Serializable {
      * @param min estremo minimo dell'intervallo di valori che l'attributo può realmente assumere nel dataset
      * @param max estremo massimo dell'intervallo di valori che l'attributo può realmente assumere nel dataset
      */
-    ContinuousAttribute(String name, int index, double min, double max){
+    public ContinuousAttribute(String name, int index, double min, double max){
         super(name, index);
         this.max = max;
         this.min = min;

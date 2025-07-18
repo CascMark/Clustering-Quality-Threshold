@@ -1,6 +1,5 @@
 package mining;
 import data.*;
-
 import java.io.*;
 import java.util.Iterator;
 

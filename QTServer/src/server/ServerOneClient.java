@@ -6,7 +6,6 @@ import database.DatabaseConnectionException;
 import database.EmptySetException;
 import mining.ClusteringRadiusException;
 import mining.QTMiner;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -49,10 +48,16 @@ public class ServerOneClient extends Thread{
 
                 switch(scelta){
                     case 0:
-                        scopriCluster();
+                        storeTableFromDb();
                         break;
                     case 1:
-                        leggiCluster();
+                        learningFromDbTable();
+                        break;
+                    case 2:
+                        storeClusterInFile();
+                        break;
+                    case 3:
+                        learningFromFile();
                         break;
                     default:
                         System.out.println("Scelta non valida");
@@ -76,66 +81,115 @@ public class ServerOneClient extends Thread{
     }
 
     /**
-     * Metodo che riceve dal client una tabella e un raggio per eseguire
-     * un clustering sul dataset. Il risultato viene restituito al client
-     * e salvato in un file specificato.
+     * Metodo che carica i dati da una tabella del database.
+     * Corrisponde al caso 0 del client (storeTableFromDb).
      * @throws IOException se si verifica un errore di input/output
      * @throws ClassNotFoundException se il formato degli oggetti ricevuti non è valido
      */
-    public void scopriCluster() throws IOException, ClassNotFoundException {
+    public void storeTableFromDb() throws IOException, ClassNotFoundException {
         String tableName = (String) in.readObject();
-        double radius = (double) in.readObject();
+
         try {
             this.data = new Data(tableName);
-            this.kmeans = new QTMiner(radius);
-            int numClusters = kmeans.compute(data);
             out.writeObject("OK");
-            out.writeObject(kmeans.getC().toString(data));
-            String fileName = (String) in.readObject();
-            kmeans.salva(fileName);
-        } catch (EmptyDatasetException ede) {
-            System.out.println("Dataset vuoto: " + ede.getMessage());
-        } catch (ClusteringRadiusException cre) {
-            System.out.println("Raggio di clustering non valido: " + cre.getMessage());
         } catch (DatabaseConnectionException dce) {
-            System.out.println("Errore connessione database: " + dce.getMessage());
+            out.writeObject("Errore connessione database: " + dce.getMessage());
         } catch (EmptySetException ese) {
-            System.out.println("Set di dati vuoto: " + ese.getMessage());
-        } catch (IOException ioe) {
-            System.out.println("Errore I/O: " + ioe.getMessage());
-        } catch (ClassNotFoundException cnfe) {
-            System.out.println("Impossibile trovare la classe specificata: " + cnfe.getMessage());
-        } catch (SQLException sqle){
-            System.out.println("Errore nel caricamento del database: " + sqle.getMessage());
+            out.writeObject("Set di dati vuoto: " + ese.getMessage());
+        } catch (SQLException sqle) {
+            out.writeObject("Errore nel caricamento del database: " + sqle.getMessage());
+        } catch (Exception e) {
+            out.writeObject("Errore generico: " + e.getMessage());
         }
     }
 
     /**
-     * Metodo che carica da file un clustering precedentemente salvato
-     * e restituisce il risultato al client.
-     * @throws FileNotFoundException se il file non viene trovato
-     * @throws ClassNotFoundException se il contenuto del file ha un formato sconosciuto
+     * Metodo che esegue il clustering sui dati caricati dal database.
+     * Corrisponde al caso 1 del client (learningFromDbTable).
      * @throws IOException se si verifica un errore di input/output
+     * @throws ClassNotFoundException se il formato degli oggetti ricevuti non è valido
      */
-    public void leggiCluster() throws FileNotFoundException, ClassNotFoundException, IOException {
-        String fileName = (String) in.readObject();
-        String tableName = (String) in.readObject();
+    public void learningFromDbTable() throws IOException, ClassNotFoundException {
+        double radius = (double) in.readObject();
 
         try {
-            this.kmeans = new QTMiner(fileName);
+            if (this.data == null) {
+                out.writeObject("Errore: nessun dato caricato. Eseguire prima il caricamento da database.");
+                return;
+            }
+
+            this.kmeans = new QTMiner(radius);
+            int numClusters = kmeans.compute(data);
+
+            out.writeObject("OK");
+            out.writeObject(numClusters);
+            out.writeObject(kmeans.getC().toString(data));
+
+        } catch (ClusteringRadiusException cre) {
+            out.writeObject("Raggio di clustering non valido: " + cre.getMessage());
+        } catch (EmptyDatasetException ede) {
+            out.writeObject("Dataset vuoto: " + ede.getMessage());
+        } catch (Exception e) {
+            out.writeObject("Errore nel clustering: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Metodo che salva i cluster in un file.
+     * Corrisponde al caso 2 del client (storeClusterInFile).
+     * @throws IOException se si verifica un errore di input/output
+     * @throws ClassNotFoundException se il formato degli oggetti ricevuti non è valido
+     */
+    public void storeClusterInFile() throws IOException, ClassNotFoundException {
+        try {
+            if (this.kmeans == null) {
+                out.writeObject("Errore: nessun clustering eseguito. Eseguire prima il clustering.");
+                return;
+            }
+
+            // Genera un nome file automatico o usa un nome predefinito
+            String fileName = "cluster_" + System.currentTimeMillis() + ".dat";
+            kmeans.salva(fileName);
+
+            out.writeObject("OK");
+
+        } catch (IOException ioe) {
+            out.writeObject("Errore nel salvataggio del file: " + ioe.getMessage());
+        } catch (Exception e) {
+            out.writeObject("Errore generico nel salvataggio: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Metodo che esegue il clustering direttamente da file.
+     * Corrisponde al caso 3 del client (learningFromFile).
+     * @throws IOException se si verifica un errore di input/output
+     * @throws ClassNotFoundException se il formato degli oggetti ricevuti non è valido
+     */
+    public void learningFromFile() throws IOException, ClassNotFoundException {
+        String tableName = (String) in.readObject();
+        double radius = (double) in.readObject();
+
+        try {
             this.data = new Data(tableName);
+            this.kmeans = new QTMiner(radius);
+            int numClusters = kmeans.compute(data);
+
             out.writeObject("OK");
             out.writeObject(kmeans.getC().toString(data));
-        } catch (FileNotFoundException e) {
-            out.writeObject("File non trovato: " + e.getMessage());
-        } catch (DatabaseConnectionException e) {
-            out.writeObject("Errore connessione database: " + e.getMessage());
-        } catch (EmptySetException e) {
-            out.writeObject("Set di dati vuoto: " + e.getMessage());
-        } catch (IOException | ClassNotFoundException e) {
-            out.writeObject("Errore nel caricamento: " + e.getMessage());
-        } catch (SQLException sqle){
-            System.out.println("Errore nel caricamento del database: " + sqle.getMessage());
+
+        } catch (EmptyDatasetException ede) {
+            out.writeObject("Dataset vuoto: " + ede.getMessage());
+        } catch (ClusteringRadiusException cre) {
+            out.writeObject("Raggio di clustering non valido: " + cre.getMessage());
+        } catch (DatabaseConnectionException dce) {
+            out.writeObject("Errore connessione database: " + dce.getMessage());
+        } catch (EmptySetException ese) {
+            out.writeObject("Set di dati vuoto: " + ese.getMessage());
+        } catch (SQLException sqle) {
+            out.writeObject("Errore nel caricamento del database: " + sqle.getMessage());
+        } catch (Exception e) {
+            out.writeObject("Errore generico: " + e.getMessage());
         }
     }
 }

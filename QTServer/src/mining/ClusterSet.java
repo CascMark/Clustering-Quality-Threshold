@@ -6,7 +6,7 @@ import java.util.TreeSet;
 import java.util.Iterator;
 
 /**
- * Classe che rappresenta un insieme di clusterù
+ * Classe che rappresenta un insieme di cluster
  * (Determinati da QT)
  */
 public class ClusterSet implements Iterable<Cluster>, Serializable {
