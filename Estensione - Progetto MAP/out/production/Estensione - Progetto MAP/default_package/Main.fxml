@@ -12,43 +12,29 @@
    <children>
       <Text layoutX="188.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clustering: Quality Threshold">
          <font>
-            <Font name="Rubik-Bold" size="36.0" />
+            <Font name="Rubik Bold Italic" size="36.0" />
          </font>
       </Text>
-      <Button layoutX="352.0" layoutY="178.0" mnemonicParsing="false" onAction="#file" text="Carica cluster da file">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="352.0" layoutY="243.0" mnemonicParsing="false" onAction="#db" text="Carica cluster da DB">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="345.0" layoutY="308.0" mnemonicParsing="false" onAction="#info" text="Scopri il QTClustering">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="759.0" layoutY="498.0" mnemonicParsing="false" onAction="#github" text="Github creator">
+      <Button layoutX="387.0" layoutY="335.0" mnemonicParsing="false" onAction="#info" prefHeight="21.0" prefWidth="134.0" text="Scopri il QTClustering" textFill="#3b7931" />
+      <Button layoutX="759.0" layoutY="498.0" mnemonicParsing="false" onAction="#github" text="Github creator" textFill="#3b7931">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Circle fill="DODGERBLUE" layoutX="222.0" layoutY="514.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text layoutX="26.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stato connessione:">
+      <Circle fx:id="ServerStatus" fill="DODGERBLUE" layoutX="180.0" layoutY="523.0" onDragDetected="#ConnectToServer" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text layoutX="26.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stato connessione:">
          <font>
-            <Font name="Rubik-Bold" size="18.0" />
+            <Font name="Rubik-Bold" size="14.0" />
          </font>
       </Text>
       <Text layoutX="139.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progetto per l'esame di &quot;Metodi avanzati di programmazione&quot; - A.A. 2024-2025">
          <font>
-            <Font size="18.0" />
+            <Font name="System Italic" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="363.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Created by Marco Pio Cascella">
+      <Text layoutX="376.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Created by Marco Pio Cascella" wrappingWidth="156.9375">
          <font>
-            <Font name="Rubik-Bold" size="12.0" />
+            <Font name="Noto Kufi Arabic Bold" size="12.0" />
          </font>
       </Text>
       <ImageView fitHeight="86.0" fitWidth="135.0" layoutX="26.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -56,5 +42,10 @@
             <Image url="@img/uniba.png" />
          </image>
       </ImageView>
+      <Button layoutX="329.0" layoutY="243.0" mnemonicParsing="false" onAction="#start" prefHeight="71.0" prefWidth="248.0" text="START" textFill="#3b7931">
+         <font>
+            <Font name="Rubik Bold Italic" size="36.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

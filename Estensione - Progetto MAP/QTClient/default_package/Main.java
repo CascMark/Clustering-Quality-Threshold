@@ -18,6 +18,8 @@ public class Main extends Application {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
             Parent root = loader.load();
+            ControllerMain controller = loader.getController();
+            controller.ConnectToServer("localhost", 8080);
             stage.setTitle("Clustering: Quality Threshold");
             Image icona = new Image(getClass().getResourceAsStream("img/icona_app.png"));
             stage.getIcons().add(icona);
@@ -26,7 +28,7 @@ public class Main extends Application {
             stage.show();
         }
         catch(Exception e){
-            e.getMessage();
+            e.printStackTrace();
         }
     }
 }
