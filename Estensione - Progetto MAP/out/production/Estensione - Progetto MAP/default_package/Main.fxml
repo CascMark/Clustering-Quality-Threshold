@@ -16,7 +16,7 @@
          </font>
       </Text>
       <Button layoutX="387.0" layoutY="335.0" mnemonicParsing="false" onAction="#info" prefHeight="21.0" prefWidth="134.0" text="Scopri il QTClustering" textFill="#3b7931" />
-      <Button layoutX="759.0" layoutY="498.0" mnemonicParsing="false" onAction="#github" text="Github creator" textFill="#3b7931">
+      <Button layoutX="777.0" layoutY="498.0" mnemonicParsing="false" onAction="#github" prefHeight="31.0" prefWidth="97.0" textFill="#3b7931">
          <font>
             <Font size="15.0" />
          </font>
@@ -47,5 +47,10 @@
             <Font name="Rubik Bold Italic" size="36.0" />
          </font>
       </Button>
+      <ImageView fitHeight="43.0" fitWidth="86.0" layoutX="787.0" layoutY="492.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/github.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
