@@ -1,7 +1,6 @@
 package default_package;
 
 import keyboardinput.Keyboard;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

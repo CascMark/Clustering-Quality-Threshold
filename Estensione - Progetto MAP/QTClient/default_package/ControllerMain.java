@@ -2,15 +2,11 @@ package default_package;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -19,9 +15,6 @@ import mining.ClusteringRadiusException;
 public class ControllerMain {
 
     private ClusClient client;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @FXML
     private Circle ServerStatus;
@@ -37,6 +30,15 @@ public class ControllerMain {
 
     @FXML
     private Text file_name_text;
+
+    @FXML
+    private AnchorPane mainScreen;
+
+    @FXML
+    private AnchorPane startScreen;
+
+    @FXML
+    private AnchorPane infoScreen;
 
 
     public void ConnectToServer(String ip, int port) {
@@ -78,31 +80,20 @@ public class ControllerMain {
     }
 
     public void info(ActionEvent e) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("infoC.fxml"));
-            root = loader.load();
-            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ioe) {
-            ioe.getMessage();
-        }
+        infoScreen.setVisible(true);
+        mainScreen.setVisible(false);
     }
 
-    public void goback(ActionEvent e) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
-            root = loader.load();
-            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ioe) {
-            ioe.getMessage();
-        }
+    @FXML
+    private void gobackStart(ActionEvent e) {
+        startScreen.setVisible(false);
+        mainScreen.setVisible(true);
+    }
+
+    @FXML
+    private void gobackInfo(ActionEvent e){
+        infoScreen.setVisible(false);
+        mainScreen.setVisible(true);
     }
 
     public void moreInfo(ActionEvent e) {
@@ -113,26 +104,10 @@ public class ControllerMain {
         }
     }
 
-
-    /*
-    PROBLEMA QUA
-     */
     @FXML
-    public void start(ActionEvent e){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
-            root = loader.load();
-            ControllerStart startController = loader.getController();
-            startController.setClient(client);
-            stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        }
-        catch(IOException ioe){
-            ioe.printStackTrace();
-        }
+    private void start(ActionEvent e) {
+        mainScreen.setVisible(false);
+        startScreen.setVisible(true);
     }
 
     @FXML
