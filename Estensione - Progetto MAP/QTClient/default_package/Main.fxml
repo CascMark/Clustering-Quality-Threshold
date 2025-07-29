@@ -10,6 +10,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.text.TextFlow?>
 <AnchorPane prefHeight="558.0" prefWidth="908.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="default_package.ControllerMain">
 
    <AnchorPane fx:id="mainScreen" prefHeight="558.0" prefWidth="908.0">
@@ -57,88 +59,94 @@
             </image>
          </ImageView>
       </children>
-</AnchorPane>
+   </AnchorPane>
 
-<AnchorPane fx:id="startScreen" prefHeight="558.0" prefWidth="908.0" visible="false">
-   <children>
-      <Button layoutX="32.0" layoutY="506.0" mnemonicParsing="false" onAction="#gobackStart" text="Indietro">
-         <font>
-            <Font name="Rubik-Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="33.0" layoutY="29.0" mnemonicParsing="false" onAction="#file" prefHeight="34.0" prefWidth="227.0" text="Carica cluster da file">
-         <font>
-            <Font name="Rubik-Bold" size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="33.0" layoutY="77.0" mnemonicParsing="false" onAction="#db" prefHeight="34.0" prefWidth="227.0" text="Carica cluster da DB">
-         <font>
-            <Font name="Rubik-Bold" size="15.0" />
-         </font>
-      </Button>
-      <TextArea layoutX="307.0" layoutY="29.0" prefHeight="376.0" prefWidth="570.0" />
-      <TextField fx:id="table_name" layoutX="33.0" layoutY="150.0" prefHeight="26.0" prefWidth="227.0" />
-      <Text layoutX="129.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Raggio">
-         <font>
-            <Font name="Rubik-Bold" size="12.0" />
-         </font>
-      </Text>
-      <TextField fx:id="radius" layoutX="32.0" layoutY="210.0" prefHeight="26.0" prefWidth="227.0" />
-      <Text fx:id="file_name_text" layoutX="121.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome file">
-         <font>
-            <Font name="Rubik-Bold" size="12.0" />
-         </font></Text>
-      <TextField fx:id="file_name" layoutX="32.0" layoutY="267.0" prefHeight="26.0" prefWidth="227.0" />
-      <Text layoutX="110.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome tabella">
-         <font>
-            <Font name="Rubik-Bold" size="12.0" />
-         </font></Text>
-      <Button layoutX="83.0" layoutY="330.0" mnemonicParsing="false" onAction="#avvia" prefHeight="41.0" prefWidth="133.0" text="AVVIA" textFill="#007b27">
-         <font>
-            <Font name="Rubik Bold Italic" size="20.0" />
-         </font>
-      </Button>
-   </children>
-</AnchorPane>
+   <AnchorPane fx:id="startScreen" prefHeight="558.0" prefWidth="908.0" visible="false">
+      <children>
+         <Button layoutX="32.0" layoutY="506.0" mnemonicParsing="false" onAction="#gobackStart" text="Indietro">
+            <font>
+               <Font name="Rubik-Bold" size="14.0" />
+            </font>
+         </Button>
+         <Button layoutX="33.0" layoutY="29.0" mnemonicParsing="false" onAction="#file" prefHeight="34.0" prefWidth="227.0" text="Carica cluster da file">
+            <font>
+               <Font name="Rubik-Bold" size="16.0" />
+            </font>
+         </Button>
+         <Button layoutX="33.0" layoutY="77.0" mnemonicParsing="false" onAction="#db" prefHeight="34.0" prefWidth="227.0" text="Carica cluster da DB">
+            <font>
+               <Font name="Rubik-Bold" size="15.0" />
+            </font>
+         </Button>
+         <ScrollPane layoutX="307.0" layoutY="29.0" prefHeight="450.0" prefWidth="570.0">
+            <content>
+               <TextFlow fx:id="outputTextFlow" prefHeight="450.0" prefWidth="570.0" />
+            </content>
+         </ScrollPane>
+         <TextField fx:id="table_name" layoutX="33.0" layoutY="150.0" prefHeight="26.0" prefWidth="227.0" />
+         <Text layoutX="129.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Raggio">
+            <font>
+               <Font name="Rubik-Bold" size="12.0" />
+            </font>
+         </Text>
+         <TextField fx:id="radius" layoutX="32.0" layoutY="210.0" prefHeight="26.0" prefWidth="227.0" />
+         <Text fx:id="file_name_text" layoutX="121.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome file">
+            <font>
+               <Font name="Rubik-Bold" size="12.0" />
+            </font>
+         </Text>
+         <TextField fx:id="file_name" layoutX="32.0" layoutY="267.0" prefHeight="26.0" prefWidth="227.0" />
+         <Text layoutX="110.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome tabella">
+            <font>
+               <Font name="Rubik-Bold" size="12.0" />
+            </font>
+         </Text>
+         <Button layoutX="83.0" layoutY="330.0" mnemonicParsing="false" onAction="#avvia" prefHeight="41.0" prefWidth="133.0" text="AVVIA" textFill="#007b27">
+            <font>
+               <Font name="Rubik Bold Italic" size="20.0" />
+            </font>
+         </Button>
+      </children>
+   </AnchorPane>
 
-<AnchorPane fx:id="infoScreen" prefHeight="558.0" prefWidth="908.0" visible="false">
-   <children>
-      <Text layoutX="27.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Mining:">
-         <font>
-            <Font name="Rubik-Bold" size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="27.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo scopo del data mining è l’estrazione (semi) automatica di  conoscenza nascosta in voluminose basi di dati al fine di  renderla disponibile e direttamente utilizzabile. Vi sono diverse aree di applicazione tra cui proprio la segmentazione (clustering)." wrappingWidth="864.592529296875">
-         <font>
-            <Font name="Rubik-Bold" size="12.0" />
-         </font>
-      </Text>
-      <Text layoutX="27.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QT Clustering (Heyer, Kruglyak, &amp; Yooseph 1999)">
-         <font>
-            <Font name="Rubik-Bold" size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="27.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Il QT (Quality Threshold) Clustering (Heyer et al., 1999) è un metodo alternativo di partizionare i dati e opera in base al seguente algoritmo:">
-         <font>
-            <Font name="Rubik-Bold" size="12.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="458.0" fitWidth="626.0" layoutX="141.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/algoritmoCluster.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="27.0" layoutY="504.0" mnemonicParsing="false" onAction="#gobackInfo" text="Indietro">
-         <font>
-            <Font name="Rubik-Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="797.0" layoutY="504.0" mnemonicParsing="false" onAction="#moreInfo" text="Altre info...">
-         <font>
-            <Font name="Rubik-Bold" size="12.0" />
-         </font>
-      </Button>
-   </children>
-</AnchorPane>
+   <AnchorPane fx:id="infoScreen" prefHeight="558.0" prefWidth="908.0" visible="false">
+      <children>
+         <Text layoutX="27.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Mining:">
+            <font>
+               <Font name="Rubik-Bold" size="14.0" />
+            </font>
+         </Text>
+         <Text layoutX="27.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo scopo del data mining è l’estrazione (semi) automatica di conoscenza nascosta in voluminose basi di dati al fine di renderla disponibile e direttamente utilizzabile. Vi sono diverse aree di applicazione tra cui proprio la segmentazione (clustering)." wrappingWidth="864.592529296875">
+            <font>
+               <Font name="Rubik-Bold" size="12.0" />
+            </font>
+         </Text>
+         <Text layoutX="27.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QT Clustering (Heyer, Kruglyak, &amp; Yooseph 1999)">
+            <font>
+               <Font name="Rubik-Bold" size="14.0" />
+            </font>
+         </Text>
+         <Text layoutX="27.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Il QT (Quality Threshold) Clustering (Heyer et al., 1999) è un metodo alternativo di partizionare i dati e opera in base al seguente algoritmo:">
+            <font>
+               <Font name="Rubik-Bold" size="12.0" />
+            </font>
+         </Text>
+         <ImageView fitHeight="458.0" fitWidth="626.0" layoutX="141.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@img/algoritmoCluster.png" />
+            </image>
+         </ImageView>
+         <Button layoutX="27.0" layoutY="504.0" mnemonicParsing="false" onAction="#gobackInfo" text="Indietro">
+            <font>
+               <Font name="Rubik-Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button layoutX="797.0" layoutY="504.0" mnemonicParsing="false" onAction="#moreInfo" text="Altre info...">
+            <font>
+               <Font name="Rubik-Bold" size="12.0" />
+            </font>
+         </Button>
+      </children>
+   </AnchorPane>
 
 </AnchorPane>

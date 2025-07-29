@@ -1,6 +1,5 @@
 package default_package;
 
-import keyboardinput.Keyboard;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -43,8 +42,6 @@ public class ClusClient {
 
     protected void storeTableFromDb(String table_name) throws IOException, ClassNotFoundException, ServerException{
         out.writeObject(0);
-        System.out.print("Table name:");
-        table_name = Keyboard.readString();
         out.writeObject(table_name);
         String result = (String)in.readObject();
         if(!result.equals("OK"))
@@ -52,7 +49,7 @@ public class ClusClient {
     }
 
     protected String learningFromFile(String table_name, double radius) throws IOException, ClassNotFoundException, ServerException{
-        out.writeObject(1);
+        out.writeObject(3);
         out.writeObject(table_name);
         out.writeObject(radius);
         String result = (String)in.readObject();
@@ -61,5 +58,4 @@ public class ClusClient {
         }
         else throw new ServerException(result);
     }
-
 }

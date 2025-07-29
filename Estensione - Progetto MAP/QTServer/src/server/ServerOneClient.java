@@ -117,14 +117,10 @@ public class ServerOneClient extends Thread{
                 out.writeObject("Errore: nessun dato caricato. Eseguire prima il caricamento da database.");
                 return;
             }
-
             this.kmeans = new QTMiner(radius);
             int numClusters = kmeans.compute(data);
-
             out.writeObject("OK");
-            out.writeObject(numClusters);
             out.writeObject(kmeans.getC().toString(data));
-
         } catch (ClusteringRadiusException cre) {
             out.writeObject("Raggio di clustering non valido: " + cre.getMessage());
         } catch (EmptyDatasetException ede) {
@@ -147,8 +143,7 @@ public class ServerOneClient extends Thread{
                 return;
             }
 
-            // Genera un nome file automatico o usa un nome predefinito
-            String fileName = "cluster_" + System.currentTimeMillis() + ".dat";
+            String fileName = (String) in.readObject();
             kmeans.salva(fileName);
 
             out.writeObject("OK");
