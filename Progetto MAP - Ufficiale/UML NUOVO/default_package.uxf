@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>264</x>
+      <y>187</y>
+      <w>550</w>
+      <h>319</h>
+    </coordinates>
+    <panel_attributes>default package</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>561</x>
+      <y>242</y>
+      <w>231</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>MainTest
+--
+-	out: ObjectOutputStream
+-in: ObjectInputStream
+--
++MainTest(ip: String, port: int)
+-menu(): integer
+-learningFromFile(): String
+-storeTableFromDb()
+-learningFromDbTable(): String
+-storeClusterInFile()
++main(args: array of String)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>275</x>
+      <y>242</y>
+      <w>253</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>ServerException
+--
++ServerException(message: String)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>286</y>
+      <w>198</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;uses&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;160.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>891</x>
+      <y>220</y>
+      <w>187</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>io</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>616</x>
+      <y>77</y>
+      <w>132</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>keyboardinput</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>418</x>
+      <y>517</y>
+      <w>418</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>net</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>902</x>
+      <y>253</y>
+      <w>165</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>FileNotFoundException
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>902</x>
+      <y>308</y>
+      <w>165</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>IOException
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>902</x>
+      <y>374</y>
+      <w>165</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>ObjectInputStream
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>902</x>
+      <y>429</y>
+      <w>165</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>ObjectOutputStream
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>550</y>
+      <w>99</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>InetAddress
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>572</x>
+      <y>550</y>
+      <w>99</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>Socket
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>682</x>
+      <y>550</y>
+      <w>121</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>SocketException
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>462</x>
+      <y>396</y>
+      <w>121</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>440</y>
+      <w>99</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>704</x>
+      <y>440</y>
+      <w>99</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>781</x>
+      <y>418</y>
+      <w>143</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>781</x>
+      <y>374</y>
+      <w>143</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>781</x>
+      <y>319</y>
+      <w>143</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>781</x>
+      <y>264</y>
+      <w>143</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>638</x>
+      <y>121</y>
+      <w>88</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>Keyboard
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>671</x>
+      <y>154</y>
+      <w>99</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;imports&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
