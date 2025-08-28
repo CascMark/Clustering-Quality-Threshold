@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="start_server">
+    <output-path>$PROJECT_DIR$/out/artifacts/start_server</output-path>
+    <root id="archive" name="start_server.jar">
+      <element id="module-output" name="Estensione - Progetto MAP" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../openjfx-17.0.16_windows-x64_bin-sdk/javafx-sdk-17.0.16/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../mysql-connector-java-8.0.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

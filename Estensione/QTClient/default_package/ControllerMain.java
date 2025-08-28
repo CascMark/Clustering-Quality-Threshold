@@ -13,44 +13,73 @@ import java.io.IOException;
 import java.net.URI;
 import mining.ClusteringRadiusException;
 
+/**
+ * Controller principale dell'applicazione JavaFX per il client QT-Miner.
+ * Gestisce la connessione al server, l'interazione con l'utente tramite GUI,
+ * la scelta della modalità (database o file), l'esecuzione del clustering e
+ * la visualizzazione dei risultati.
+ */
 public class ControllerMain {
 
+    /** Oggetto client per comunicare con il server QT-Miner */
     private ClusClient client;
 
+    /** Flag che indica se la modalità attiva è database */
     private boolean db_mode;
 
+    /** Flag che indica se la modalità attiva è file */
     private boolean file_mode;
 
+    /** Indicatore dello stato del server nella GUI */
     @FXML
     private Circle ServerStatus;
 
+    /** Campo di testo per il raggio del clustering */
     @FXML
     private TextField radius;
 
+    /** Campo di testo per il nome della tabella */
     @FXML
     private TextField table_name;
 
+    /** AnchorPane principale dell'interfaccia */
     @FXML
     private AnchorPane mainScreen;
 
+    /** AnchorPane della schermata di avvio */
     @FXML
     private AnchorPane startScreen;
 
+    /** AnchorPane della schermata informativa */
     @FXML
     private AnchorPane infoScreen;
 
+    /** Flusso di testo per l'output a video */
     @FXML
     private TextFlow outputTextFlow;
 
+    /** Testo per indicare la modalità attiva (FILE/DATABASE) */
     @FXML
     private Text modeText;
 
+    /**
+     * Aggiunge del testo colorato al TextFlow di output.
+     *
+     * @param text  il testo da aggiungere
+     * @param color il colore del testo
+     */
     private void appendColoredText(String text, Color color) {
         Text coloredText = new Text(text);
         coloredText.setFill(color);
         outputTextFlow.getChildren().add(coloredText);
     }
 
+    /**
+     * Connette il client al server QT-Miner all'indirizzo e porta specificati.
+     *
+     * @param ip   indirizzo IP del server
+     * @param port porta del server
+     */
     public void ConnectToServer(String ip, int port) {
         try {
             client = new ClusClient(ip, port);
@@ -64,11 +93,21 @@ public class ControllerMain {
         }
     }
 
+    /**
+     * Azione collegata al pulsante di connessione al server.
+     *
+     * @param e evento generato dall'azione
+     */
     @FXML
     public void ConnectToServer(ActionEvent e) {
         ConnectToServer("localhost", 8080);
     }
 
+    /**
+     * Apre il browser predefinito sulla pagina GitHub dell'autore.
+     *
+     * @param e evento generato dall'azione
+     */
     public void github(ActionEvent e) {
         try {
             Desktop.getDesktop().browse(new URI("https://github.com/CascMark"));
@@ -77,6 +116,11 @@ public class ControllerMain {
         }
     }
 
+    /**
+     * Imposta la modalità FILE e aggiorna l'interfaccia.
+     *
+     * @param e evento generato dall'azione
+     */
     public void file(ActionEvent e) {
         radius.setVisible(true);
         table_name.setVisible(true);
@@ -88,6 +132,11 @@ public class ControllerMain {
         db_mode = false;
     }
 
+    /**
+     * Imposta la modalità DATABASE e aggiorna l'interfaccia.
+     *
+     * @param e evento generato dall'azione
+     */
     public void db(ActionEvent e) {
         radius.setVisible(true);
         table_name.setVisible(true);
@@ -99,11 +148,21 @@ public class ControllerMain {
         file_mode = false;
     }
 
+    /**
+     * Mostra la schermata informativa.
+     *
+     * @param e evento generato dall'azione
+     */
     public void info(ActionEvent e) {
         infoScreen.setVisible(true);
         mainScreen.setVisible(false);
     }
 
+    /**
+     * Torna alla schermata principale dalla schermata di start.
+     *
+     * @param e evento generato dall'azione
+     */
     @FXML
     private void gobackStart(ActionEvent e) {
         startScreen.setVisible(false);
@@ -113,12 +172,22 @@ public class ControllerMain {
         table_name.clear();
     }
 
+    /**
+     * Torna alla schermata principale dalla schermata info.
+     *
+     * @param e evento generato dall'azione
+     */
     @FXML
     private void gobackInfo(ActionEvent e){
         infoScreen.setVisible(false);
         mainScreen.setVisible(true);
     }
 
+    /**
+     * Apre il browser sulla pagina di Wikipedia sul Clustering.
+     *
+     * @param e evento generato dall'azione
+     */
     public void moreInfo(ActionEvent e) {
         try {
             Desktop.getDesktop().browse(new URI("https://it.wikipedia.org/wiki/Clustering"));
@@ -127,6 +196,11 @@ public class ControllerMain {
         }
     }
 
+    /**
+     * Mostra la schermata di start all'avvio dell'applicazione.
+     *
+     * @param e evento generato dall'azione
+     */
     @FXML
     private void start(ActionEvent e) {
         mainScreen.setVisible(false);
@@ -136,6 +210,12 @@ public class ControllerMain {
         db_mode = true;
     }
 
+    /**
+     * Avvia il processo di clustering, leggendo dati da database o file a seconda della modalità.
+     * Gestisce anche l'output a video, i messaggi di errore e la riconnessione al server in caso di problemi.
+     *
+     * @param e evento generato dall'azione
+     */
     @FXML
     public void avvia(ActionEvent e){
         outputTextFlow.getChildren().clear();
@@ -173,7 +253,7 @@ public class ControllerMain {
                 appendColoredText(clusteringResult, Color.BLACK);
                 appendColoredText("\n", Color.BLACK);
                 appendColoredText("Salvataggio del risultato nel file...\n", Color.GREEN);
-                client.storeClusterInFile(); // Rimossa la chiamata con parametro fileName
+                client.storeClusterInFile();
                 appendColoredText("Salvataggio completato!\n", Color.GREEN);
             }
             else if(file_mode){

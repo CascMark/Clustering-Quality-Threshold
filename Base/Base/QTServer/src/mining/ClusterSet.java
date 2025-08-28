@@ -13,9 +13,6 @@ public class ClusterSet implements Iterable<Cluster>, Serializable {
 
     private Set<Cluster> C = new TreeSet<Cluster>();
 
-    /**
-     *
-     */
     public ClusterSet(){}
 
     /**
