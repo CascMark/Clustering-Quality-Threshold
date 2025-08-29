@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="558.0" prefWidth="908.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="default_package.ControllerMain">
+
+    <AnchorPane fx:id="mainScreen" prefHeight="558.0" prefWidth="908.0">
+        <children>
+            <Text layoutX="188.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clustering: Quality Threshold">
+                <font>
+                    <Font name="Rubik Bold Italic" size="36.0" />
+                </font>
+            </Text>
+            <Button layoutX="387.0" layoutY="335.0" mnemonicParsing="false" onAction="#info" prefHeight="21.0" prefWidth="134.0" text="Scopri il QTClustering" textFill="#3b7931" />
+            <Button layoutX="777.0" layoutY="498.0" mnemonicParsing="false" onAction="#github" prefHeight="31.0" prefWidth="97.0" textFill="#3b7931">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Button>
+            <Circle fx:id="ServerStatus" fill="DODGERBLUE" layoutX="180.0" layoutY="523.0" onDragDetected="#ConnectToServer" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text layoutX="26.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stato connessione:">
+                <font>
+                    <Font name="Rubik-Bold" size="14.0" />
+                </font>
+            </Text>
+            <Text layoutX="139.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progetto per l'esame di &quot;Metodi avanzati di programmazione&quot; - A.A. 2024-2025">
+                <font>
+                    <Font name="System Italic" size="18.0" />
+                </font>
+            </Text>
+            <Text layoutX="376.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Created by Marco Pio Cascella" wrappingWidth="156.9375">
+                <font>
+                    <Font name="Noto Kufi Arabic Bold" size="12.0" />
+                </font>
+            </Text>
+            <ImageView fitHeight="86.0" fitWidth="135.0" layoutX="26.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/uniba.png" />
+                </image>
+            </ImageView>
+            <Button layoutX="329.0" layoutY="243.0" mnemonicParsing="false" onAction="#start" prefHeight="71.0" prefWidth="248.0" text="START" textFill="#3b7931">
+                <font>
+                    <Font name="Rubik Bold Italic" size="36.0" />
+                </font>
+            </Button>
+            <ImageView fitHeight="43.0" fitWidth="86.0" layoutX="787.0" layoutY="492.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/github.png" />
+                </image>
+            </ImageView>
+        </children>
+    </AnchorPane>
+
+    <AnchorPane fx:id="startScreen" prefHeight="558.0" prefWidth="908.0" visible="false">
+        <children>
+            <Button layoutX="32.0" layoutY="506.0" mnemonicParsing="false" onAction="#gobackStart" text="Indietro">
+                <font>
+                    <Font name="Rubik-Bold" size="14.0" />
+                </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="29.0" mnemonicParsing="false" onAction="#file" prefHeight="34.0" prefWidth="227.0" text="Carica cluster da file">
+                <font>
+                    <Font name="Rubik-Bold" size="16.0" />
+                </font>
+            </Button>
+            <Button layoutX="33.0" layoutY="77.0" mnemonicParsing="false" onAction="#db" prefHeight="34.0" prefWidth="227.0" text="Carica cluster da DB">
+                <font>
+                    <Font name="Rubik-Bold" size="15.0" />
+                </font>
+            </Button>
+            <ScrollPane layoutX="307.0" layoutY="29.0" prefHeight="450.0" prefWidth="570.0">
+                <content>
+                    <TextFlow fx:id="outputTextFlow" prefHeight="450.0" prefWidth="570.0" />
+                </content>
+            </ScrollPane>
+            <TextField fx:id="table_name" layoutX="33.0" layoutY="150.0" prefHeight="26.0" prefWidth="227.0" />
+            <Text layoutX="129.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Raggio">
+                <font>
+                    <Font name="Rubik-Bold" size="12.0" />
+                </font>
+            </Text>
+            <TextField fx:id="radius" layoutX="32.0" layoutY="210.0" prefHeight="26.0" prefWidth="227.0" />
+            <Text layoutX="110.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome tabella">
+                <font>
+                    <Font name="Rubik-Bold" size="12.0" />
+                </font>
+            </Text>
+            <Button layoutX="83.0" layoutY="258.0" mnemonicParsing="false" onAction="#avvia" prefHeight="41.0" prefWidth="133.0" text="AVVIA" textFill="#007b27">
+                <font>
+                    <Font name="Rubik Bold Italic" size="20.0" />
+                </font>
+            </Button>
+            <VBox alignment="CENTER" layoutX="80.0" layoutY="329.0" prefHeight="30.0" prefWidth="140.0" spacing="5.0">
+                <children>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modalità:">
+                        <font>
+                            <Font name="Rubik-Bold" size="14.0" />
+                        </font>
+                    </Text>
+                    <Text fx:id="modeText" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <font>
+                            <Font name="Rubik-Bold" size="14.0" />
+                        </font>
+                    </Text>
+                </children>
+            </VBox>
+        </children>
+    </AnchorPane>
+
+    <AnchorPane fx:id="infoScreen" prefHeight="558.0" prefWidth="908.0" visible="false">
+        <children>
+            <Text layoutX="27.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Mining:">
+                <font>
+                    <Font name="Rubik-Bold" size="14.0" />
+                </font>
+            </Text>
+            <Text layoutX="27.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo scopo del data mining è l’estrazione (semi) automatica di conoscenza nascosta in voluminose basi di dati al fine di renderla disponibile e direttamente utilizzabile. Vi sono diverse aree di applicazione tra cui proprio la segmentazione (clustering)." wrappingWidth="864.592529296875">
+                <font>
+                    <Font name="Rubik-Bold" size="12.0" />
+                </font>
+            </Text>
+            <Text layoutX="27.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QT Clustering (Heyer, Kruglyak, &amp; Yooseph 1999)">
+                <font>
+                    <Font name="Rubik-Bold" size="14.0" />
+                </font>
+            </Text>
+            <Text layoutX="27.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Il QT (Quality Threshold) Clustering (Heyer et al., 19 al. 1999) è un metodo alternativo di partizionare i dati e opera in base al seguente algoritmo:">
+                <font>
+                    <Font name="Rubik-Bold" size="12.0" />
+                </font>
+            </Text>
+            <ImageView fitHeight="458.0" fitWidth="626.0" layoutX="141.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/algoritmoCluster.png" />
+                </image>
+            </ImageView>
+            <Button layoutX="27.0" layoutY="504.0" mnemonicParsing="false" onAction="#gobackInfo" text="Indietro">
+                <font>
+                    <Font name="Rubik-Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button layoutX="797.0" layoutY="504.0" mnemonicParsing="false" onAction="#moreInfo" text="Altre info...">
+                <font>
+                    <Font name="Rubik-Bold" size="12.0" />
+                </font>
+            </Button>
+        </children>
+    </AnchorPane>
+
+</AnchorPane>

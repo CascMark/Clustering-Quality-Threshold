@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"data"},{"l":"database"},{"l":"default_package"},{"l":"keyboardinput"},{"l":"mining"},{"l":"server"}];updateSearchResults();
