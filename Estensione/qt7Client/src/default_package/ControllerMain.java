@@ -11,7 +11,6 @@ import javafx.scene.text.TextFlow;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
-import qt7Server.src.mining.ClusteringRadiusException;
 
 /**
  * Controller principale dell'applicazione JavaFX per il client QT-Miner.
@@ -235,7 +234,7 @@ public class ControllerMain {
                 throw new NoTextValues("Errore: il valore inserito nel campo 'Raggio' non è un numero valido.");
             }
             if (radius_value <= 0) {
-                throw new ClusteringRadiusException();
+                throw new InvalidRadiusException("");
             }
             if(db_mode){
                 appendColoredText("Caricamento tabella dal database...\n", Color.GREEN);
@@ -272,7 +271,7 @@ public class ControllerMain {
             appendColoredText("Attenzione, campi di input vuoti: " + ex.getMessage() + "\n", Color.RED);
             appendColoredText("\n", Color.RED);
             ex.printStackTrace();
-        } catch (ClusteringRadiusException ex) {
+        } catch (InvalidRadiusException ex) {
             appendColoredText("Errore: Raggio di clustering non valido. Il raggio deve essere maggiore di 0.\n", Color.RED);
             appendColoredText("\n", Color.RED);
             ex.printStackTrace();

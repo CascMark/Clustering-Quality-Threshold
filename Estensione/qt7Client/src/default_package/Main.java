@@ -41,7 +41,7 @@ public class Main extends Application {
 
             stage.setTitle("Clustering: Quality Threshold");
 
-            Image icona = new Image(getClass().getResourceAsStream("img/icona_app.png"));
+            Image icona = new Image(getClass().getResourceAsStream("/media/icona_app.png"));
             stage.getIcons().add(icona);
 
             stage.setResizable(false);

@@ -46,7 +46,7 @@
             </Text>
             <ImageView fitHeight="86.0" fitWidth="135.0" layoutX="26.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@img/uniba.png" />
+                    <Image url="@/media/uniba.png" />
                 </image>
             </ImageView>
             <Button layoutX="329.0" layoutY="243.0" mnemonicParsing="false" onAction="#start" prefHeight="71.0" prefWidth="248.0" text="START" textFill="#3b7931">
@@ -56,7 +56,7 @@
             </Button>
             <ImageView fitHeight="43.0" fitWidth="86.0" layoutX="787.0" layoutY="492.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@img/github.png" />
+                    <Image url="@/media/github.png" />
                 </image>
             </ImageView>
         </children>
@@ -125,7 +125,7 @@
                     <Font name="Rubik-Bold" size="14.0" />
                 </font>
             </Text>
-            <Text layoutX="27.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo scopo del data mining è l’estrazione (semi) automatica di conoscenza nascosta in voluminose basi di dati al fine di renderla disponibile e direttamente utilizzabile. Vi sono diverse aree di applicazione tra cui proprio la segmentazione (clustering)." wrappingWidth="864.592529296875">
+            <Text layoutX="27.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo scopo del data mining è l'estrazione (semi) automatica di conoscenza nascosta in voluminose basi di dati al fine di renderla disponibile e direttamente utilizzabile. Vi sono diverse aree di applicazione tra cui proprio la segmentazione (clustering)." wrappingWidth="864.592529296875">
                 <font>
                     <Font name="Rubik-Bold" size="12.0" />
                 </font>
@@ -142,7 +142,7 @@
             </Text>
             <ImageView fitHeight="458.0" fitWidth="626.0" layoutX="141.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@img/algoritmoCluster.png" />
+                    <Image url="@/media/algoritmoCluster.png" />
                 </image>
             </ImageView>
             <Button layoutX="27.0" layoutY="504.0" mnemonicParsing="false" onAction="#gobackInfo" text="Indietro">
