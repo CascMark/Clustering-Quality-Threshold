@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="app_start_base:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/app_start_base_jar</output-path>
+    <root id="archive" name="qt7Client.jar">
+      <element id="module-output" name="qt7Client" />
+    </root>
+  </artifact>
+</component>
