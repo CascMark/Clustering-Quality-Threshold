@@ -1,0 +1,3 @@
+@echo off
+java -jar "..\Jar\app_start_estensione.jar"
+pause
