@@ -22,79 +22,56 @@ Come anticipato precedentemente, il nostro sistema si basa su due principali com
 
 Per installare il software QTClustering, è necessario seguire i seguenti passaggi:
 
-1. **Scaricare e Installare Java Development Kit (JDK):**
-   - Assicurarsi di avere installato il JDK versione 11 o successiva. È possibile scaricarlo dal sito ufficiale di Oracle.
-     - [Scarica JDK da Oracle](https://www.oracle.com/java/technologies/downloads/)
-   - Installazione JDK Versione 22 tramite Terminale di Windows:
-     - Aprire il Prompt dei comandi di Windows come amministratore.
-     - Digitare il comando seguente per scaricare l'eseguibile del Java JDK versione 22:
-      ```
-      curl -o jdk-22_windows-x64_bin.exe https://download.oracle.com/java/22/latest/jdk-22_windows-x64_bin.exe
-      ```
-   - Una volta completato il download, installare l'eseguibile del JDK eseguendo il comando:
+1. **Scaricare e installare il Java Development Kit (JDK):**
+
+- Scaricare il JDK versione 24.0.2 dal sito ufficiale di [Oracle](https://www.oracle.com/java/technologies/downloads/?er=221886)
+
+- Dopo averlo scaricato, procediamo con l'installazione tramite terminale di Windows:
+  
+  - Aprire il **Prompt dei comandi come amministratore** e digitare il seguente comando:
+
+   ```cmd
+       curl -o jdk-24_windows-x64_bin.exe https://download.oracle.com/java/24/latest/jdk-24_windows-x64_bin.exe
+   ```
+
+  - Una volta completato il download, installare l'eseguibile del JDK eseguendo il comando:
+   ```cmd
+       jdk-24_windows-x64_bin.exe
+   ```
+  - Questo avvierà il processo di installazione del JDK.  
+       Al termine dell'installazione, verificare che sia andata a buon fine digitando il seguente comando:
+       ```cmd
+       java -version
+       ```
+     - L'output dovrebbe restituire la versione di Java appena installata (24).  
+       Un esempio di output atteso è:
     ```
-     jdk-22_windows-x64_bin.exe
+       java version "24.0.2" 2025-07-15
+       Java(TM) SE Runtime Environment (build 24.0.2+7-70)
+       Java HotSpot(TM) 64-Bit Server VM (build 24.0.2+7-70, mixed mode, sharing)
     ```
-   - Questo avvierà il processo di installazione del JDK. Al termine dell'installazione, verificare che sia andata a buon fine digitando il seguente comando:
-    ```
-     java -version
-     ```
-   - L'output dovrebbe restituire la versione di Java appena installata (22). Un esempio di output atteso è:  
-     java version "22.0.2" 2024-07-16  
-     Java(TM) SE Runtime Environment (build 22.0.2+9-70)  
-     Java HotSpot(TM) 64-Bit Server VM (build 22.0.2+9-70, mixed mode, sharing)  
-   - Per aggiungere il JDK al PATH delle variabili di sistema, digitare il comando:
-    ```
-     setx PATH "%PATH%;C:\Program Files\Java\jdk-22\bin"
-     ```
-   - Se si desidera verificare l'aggiunta del percorso al PATH, utilizzare il comando:
-    ```
+
+   - Per aggiungere il JDK al **PATH** delle variabili di sistema, digitare il comando:
+  ```cmd
+     setx PATH "%PATH%;C:\Program Files\Java\jdk-24\bin"
+  ```
+
+   - Se si desidera verificare l’aggiunta del percorso al PATH, utilizzare il comando:
+  ```cmd
      echo %PATH%
-      ```
-<br>
+  ```
 
-2. **Scaricare ed Estrarre JavaFX (SDK):**  
-Il download delle librerie javafx è fondamentale per il corretto avvio dell'applicazione.
+2. **JavaFX (SDK):**
 
-  - [Scarica JavaFX SDK](https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_windows-x64_bin-jmods.zip)
-   - Installazione SDK Versione 22.0.2 tramite Terminale di Windows:
-     - Aprire il Prompt dei comandi di Windows come amministratore.
-     - Digitare il comando seguente per scaricare il file .zip del JavaFX SDK versione 22.0.2:
-      ```
-      curl -o C:\javafx-sdk-22.0.2_windows-x64_bin-sdk.zip https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_windows-x64_bin-sdk.zip
-      ```
-      - Dopo il download, estrarre il contenuto del file ZIP utilizzando il comando:
-      ```
-      powershell -Command "Expand-Archive -Path 'C:\javafx-sdk-22.0.2_windows-x64_bin-sdk.zip' -DestinationPath 'C:\javafx-sdk'"
-      ```
-      Assicurarsi di inserire i percorsi corretti sia per il path di partenza che per quello di destinazione.
+- La presenza delle librerie di JavaFX SDK (Versione 24.0.2) è di **fondamentale importanza** per poter eseguire correttamente l'applicazione, tali librerie sono presenti nella cartella **"Jar"** del progetto nella sezione **Estensione**.
 
-<br>
+3. **FARE PARTE MYQSL**
 
-3. **Scaricare e Installare MySQL:**
-   - Installare MySQL Community Server. È possibile scaricarlo dal sito ufficiale di MySQL.
-     - [Scarica MySQL Community Server](https://dev.mysql.com/downloads/mysql/)
+# 3 - Configurazione database, server e client
 
-4. **Inserire MySQL tra le variabili d'ambiente:**
-  - Aprire il menu `Start` e cercare "variabili d'ambiente".
+All'interno della cartella di progetto
 
-  - Selezionare `Modifica le variabili d'ambiente di sistema`.
 
-  - Nella finestra `Proprietà del sistema`, cliccare su `Variabili d'ambiente...`.
-
-  - Nella sezione `Variabili di sistema`, cercare e selezionare la variabile `Path`, quindi cliccare su `Modifica...`.
-
-  - Cliccare su `Nuovo` e aggiungere il percorso della cartella `bin` di MySQL. Il percorso predefinito è solitamente: `C:\Program Files\MySQL\MySQL Server [versione]\bin`
-
-  - Cliccare su `OK` per chiudere tutte le finestre aperte.
-
-5. **Verificare l'installazione**
-
-  - Aprire un nuovo prompt dei comandi.
-
-  - Digitare `mysql --version` e premere `Invio`.
-
-  - Se MySQL è stato aggiunto correttamente al `PATH`, vedrai la versione di MySQL installata.
 
 # 4 - Guida all'uso
 L'interfaccia utente si presenta nel seguente modo:
