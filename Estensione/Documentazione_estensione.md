@@ -1,5 +1,7 @@
 # **Manuale utente - QTClustering - Estensione**
 
+## Credits software e documentazione: **Marco Pio Cascella**
+
 ## **Indice**
 
 [1. Introduzione](#1-introduzione)
@@ -72,11 +74,81 @@ Per installare il software QTClustering, è necessario seguire i seguenti passag
 
 - La presenza delle librerie di JavaFX SDK (Versione 24.0.2) è di **fondamentale importanza** per poter eseguire correttamente l'applicazione, tali librerie sono presenti nella cartella **"Jar"** della directory di progetto.
 
-3. **FARE MYSQL**
+3. **Scaricare ed installare MySQL**
+
+    Un'altra componente fondamentale per il corretto funzionamento del software è il downlaod e la configurazione di **MySQL Community Server** scariabile al seguente [link](https://dev.mysql.com/downloads/mysql/) (Si consiglia di scaricare la versione 8.0.40, l'utilizzo di versioni inferiori o superiori non garantisce la compatibilità con il software), l'installazione avverrà successivamente mediante strumento Wizard.
+
+    Scrivendo il seguente comando all'interno del terminale di Windows è possibile verificare se l'installazione è avvenuta correttamente:
+
+```cmd
+    mysql --version
+```
+
+Un esempio di output è il seguente:
+
+```cmd
+    mysql  Ver 8.0.40 for Win64 on x86_64 (MySQL Community Server - GPL)
+```
 
 ## **3. Esecuzione del sistema**
 
-All'interno della directory del progetto, più precisamente all'interno della cartella **"File per l'avvio"** sono presenti due file batch:
+All'interno della directory del progetto, più precisamente all'interno della cartella **"File per l'avvio"** sono presenti quattro file batch (Bisogna eseguirli in ordine per poter utilizzare correttamente il software):
+
+- **inizializzazione_db.bat**: Facendo doppio click sul file bat, la prima cosa che verrà chiesta all'utente è quella di inserire la password dell'user root, configurata al momento dell'installazione di MySQL.
+
+La funzionalità principale di questo file batch è quella di automatizzare la creazione del database **MapDB** e dell'utente **MapUser**, identificato dalla password **"map"**, (UTILE PER IL SECONDO FILE BATCH) richiamando uno script sql (**"inizializzazione_db.sql"** presente all'interno della cartella **"File per l'avvio"**), di seguito il contenuto del file batch:
+
+```cmd
+    @echo off
+
+    "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql" -u root -p < "inizializzazione_db.sql"
+
+    IF ERRORLEVEL 1 (
+    echo Errore durante l'inizializzazione del database. Controllare il file di log di MySQL per maggiori informazioni.
+    ) ELSE (
+    echo Inizializzazione del Database MapDB e dell'utente MapUSER riuscita.
+    )
+
+    pause
+```
+
+- **tabella_campione.bat**: Il seguente file batch automatizza la creazione di una tabella di esempio per poter testare il software, facendo doppio click sul file bat, la prima cosa che verrà richiesta all'utente è quella di inserire la password, che in questo caso sarà **"map"** come specificato anche nel punto precedente. Una volta inserita la password, a video verrà mostrato un messaggio che comunica all'utente se la creazione della tabella di esempio è avvenuta con successo. 
+
+Di seguito è riportato il contenuto del file batch:
+
+```cmd
+    @echo off
+    setlocal
+
+    REM Percorso dello script
+    set "SCRIPT_DIR=%~dp0"
+
+    REM Percorso completo di mysql.exe
+    set "MYSQL_PATH=C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe"
+
+    REM Messaggio iniziale
+    echo Avvio esecuzione SQL per la tabella di esempio...
+
+    REM Esegui il file SQL usando ridirezione e password interattiva
+    "%MYSQL_PATH%" -u MapUser -p < "%SCRIPT_DIR%tabella_campione.sql"
+
+    REM Controlla l'errore
+    if %ERRORLEVEL% neq 0 (
+        echo.
+        echo ERRORE: Impossibile eseguire lo script SQL.
+        echo Verifica la password e che l'utente MapUser abbia accesso al database MapDB.
+        pause
+        exit /b 1
+    ) else (
+        echo.
+        echo SUCCESSO: Lo script SQL e' stato eseguito correttamente!
+    )
+
+    pause
+
+```
+
+(I CONTENUTI DEI FILE .SQL SONO VISUALIZZABILI E SI TROVANO ALL'INTERNO DELLA CARTELLA **"File per l'avvio"**)
 
 - **Server_setup_estensione.bat**: Questo file batch automatizza l'avvio del server, questo il suo contenuto:
 
@@ -127,3 +199,27 @@ Facendo doppio click sul file, il terminale verrà aperto mostrando la seguente 
 ```cmd
     addr = localhost/127.0.0.1
 ```
+
+## **5. Architettura di sistema UML**
+
+In questa sezione descriviamo l'architettura di sistema mediante diagrammi UML, utili per descrivere modelli software con un approccio Object Oriented, per maggiori informazioni riguardo eventuali omissioni di package e info utili alla consultazione dei diagrammi è possibile leggere il file **"UML_info"** presente nella cartella UML della directory del progetto.
+
+- **Package data**
+
+![data](./img%20docs/data.png)
+
+- **Package mining**
+
+![mining](./img%20docs/mining.png)
+
+- **Package database**
+
+![database](./img%20docs/database.png)
+
+- **Package default_package**
+
+![default](./img%20docs/default_package_estensione.png)
+
+- **Package server**
+
+![server](./img%20docs/server.png)

@@ -1,5 +1,7 @@
  # Manuale utente - Clustering: Quality Threshold
 
+ ## Credits software e documentazione: **Marco Pio Cascella**
+
 # Indice
 
 - [1 - Introduzione](#1---introduzione)

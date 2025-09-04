@@ -1,0 +1,6 @@
+DROP DATABASE IF EXISTS MapDB;
+CREATE DATABASE IF NOT EXISTS MapDB;
+
+DROP USER IF EXISTS 'MapUser'@'localhost';
+CREATE USER 'MapUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'map';
+GRANT CREATE, SELECT, INSERT, DELETE ON MapDB.* TO 'MapUser'@'localhost';
