@@ -200,6 +200,46 @@ Facendo doppio click sul file, il terminale verrà aperto mostrando la seguente 
     addr = localhost/127.0.0.1
 ```
 
+## **4. Manuale d'uso**
+
+Una volta avviata correttamente l'applicazione, l'utente potrà visualizzare la schermata principale.
+
+La schermata principale presenta diverse opzioni:
+
+- **START**: Permette all'utente di accedere alla schermata dove vengono erogati i principali servizi di clustering
+
+- **Scopri il QTClustering**: Permette all'utente di accedere ad una schermata dove sono riportate le principali informazioni sull'algoritmo di Clustering.
+
+- **GitHub**: Permette all'utente di visitare il profilo GitHub del creator.
+
+Inoltre in basso a sinistra c'è un flag che comunica all'utente se il software è connesso correttamente al server (verde se connesso, rosso altrimenti).
+
+![start](./img%20docs/start.png)
+
+Premendo sul pulsante **START** l'utente può accedere alla schermata dove sono presenti i due principali servizi offerti dal software:
+
+![schermata_vuota](./img%20docs/schermatavuota.png)
+
+
+
+- **Carica cluster da file**: Permette all'utente di poter aprire un file già esistente denominato nome tabella + raggio (Per esempio playTennis3.dat), mostrando a video solo i centroidi.
+
+![file](./img%20docs/file.png)
+
+- **Carica cluster da DB**: Permette all'utente di utilizzare l'algoritmo di clustering di una tabella qualsiasi del database collegato al software, il clustering avviene specificando il nome della tabella del db e il raggio di clustering desiderato. Una volta aver premuto **AVVIA**, a video verranno mostrati i risultati del clustering che verranno memorizzati in un file .dat denominato nome tabella + raggio . dat.
+
+![db](./img%20docs/db.png)
+
+Premendo sul tasto **indietro** l'utente verrà riportato alla schermata principale.
+
+Dalla schermata principale, se l'utente preme il pulsante **Scopri il QTClustering**, potrà accedere alla seguente schermata:
+
+![info](./img%20docs/info.png)
+
+In questa schermata, premendo sul pulsante **Altre info...** l'utente verrà reindirizzato ad una pagina contenente maggiori informazioni riguardo all'argomento.
+
+Premendo sul pulsante **Indietro** l'utente potrà tornare alla schermata principale.
+
 ## **5. Architettura di sistema UML**
 
 In questa sezione descriviamo l'architettura di sistema mediante diagrammi UML, utili per descrivere modelli software con un approccio Object Oriented, per maggiori informazioni riguardo eventuali omissioni di package e info utili alla consultazione dei diagrammi è possibile leggere il file **"UML_info"** presente nella cartella UML della directory del progetto.
