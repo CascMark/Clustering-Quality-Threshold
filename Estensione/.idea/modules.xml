@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Estensione.iml" filepath="$PROJECT_DIR$/.idea/Estensione.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qt7Client/qt7Client.iml" filepath="$PROJECT_DIR$/qt7Client/qt7Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qt7Server/qt7Server.iml" filepath="$PROJECT_DIR$/qt7Server/qt7Server.iml" />
+    </modules>
+  </component>
+</project>

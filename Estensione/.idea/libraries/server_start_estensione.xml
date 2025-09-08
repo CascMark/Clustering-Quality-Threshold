@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="server_start_estensione">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/qt7Server/out/artifacts/server_start_estensione_jar/server_start_estensione.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

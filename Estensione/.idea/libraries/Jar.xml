@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Jar/app_start_estensione.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Jar/server_start_estensione.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
